@@ -265,7 +265,7 @@ deployment_type=openshift-enterprise
 openshift_master_identity_providers=[{'name': 'htpasswd_auth', 'login': 'true', 'challenge': 'true', 'kind': 'HTPasswdPasswordIdentityProvider', 'filename': '/etc/origin/master/htpasswd'}]
 openshift_master_manage_htpasswd=false
 
-os_sdn_network_plugin_name=${OPENSHIFTSDN}
+os_sdn_network_plugin_name="redhat/openshift-ovs-subnet"
 
 # default selectors for router and registry services
 openshift_router_selector='role=infra'
@@ -416,7 +416,7 @@ cat <<EOF >> /home/${AUSERNAME}/subscribe.yml
   - name: Update all hosts
     yum: name="*" state=latest
   - name: Install the docker
-    yum: name=docker state=latest
+    yum: name=docker-1.12.6
   - name: Start Docker
     service:
       name: docker
